@@ -1,0 +1,553 @@
+:root {
+  /* Paleta principal Icesi */
+  --icesi-blue: #5454e9;
+  --icesi-blue-dark: #3f3fc4;
+  --icesi-white: #ffffff;
+
+  /* Paleta complementaria Icesi — solo como apoyo puntual, nunca sola */
+  --icesi-yellow: #e4eb60;
+  --icesi-orange: #e9683b;
+  --icesi-purple: #865cf0;
+  --icesi-green: #4cb979;
+  --icesi-gray-1: #88898c;
+  --icesi-gray-2: #cecfd4;
+  --icesi-black: #000000;
+
+  --bg: var(--icesi-white);
+  --surface: #ffffff;
+  --surface-muted: #f5f5fb;
+  --border: var(--icesi-gray-2);
+  --text: #16161a;
+  --text-dim: var(--icesi-gray-1);
+  --accent: var(--icesi-blue);
+  --accent-contrast: #ffffff;
+  --success: var(--icesi-green);
+  --diagram-arrow: #16161a;
+  --diagram-oval: var(--icesi-blue);
+  --diagram-dot: #16161a;
+
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+.landing-title,
+.question-badge {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+/* ------------------------------------------------------------------ */
+/* Logo Icesi                                                          */
+/* ------------------------------------------------------------------ */
+
+.icesi-logo-badge {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 0.45rem 0.7rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+}
+
+.icesi-logo {
+  display: block;
+  height: 34px;
+  width: auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* Landing                                                             */
+/* ------------------------------------------------------------------ */
+
+.landing {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--icesi-blue) 0%, var(--icesi-blue-dark) 100%);
+  padding: 2rem 1.25rem;
+}
+
+.landing-card {
+  max-width: 480px;
+  width: 100%;
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 2.75rem 2.25rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.landing-title {
+  margin: 0;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.landing-subtitle {
+  margin: 0;
+  font-weight: 600;
+  color: var(--icesi-purple);
+}
+
+.landing-start-button {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: none;
+  border-radius: 12px;
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.landing-start-button:hover {
+  background: var(--icesi-blue-dark);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------------ */
+/* App shell                                                           */
+/* ------------------------------------------------------------------ */
+
+.app {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 4.5rem 1.25rem 4rem;
+}
+
+.app-header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.6rem;
+  color: var(--text);
+}
+
+.app-progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.reset-button {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.reset-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Malla de cartas                                                     */
+/* ------------------------------------------------------------------ */
+
+.card-mesh {
+  display: grid;
+  grid-template-columns: repeat(6, 68px);
+  gap: 0.7rem;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.card-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 6px 16px rgba(84, 84, 233, 0.15);
+}
+
+.card-tile.is-selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(84, 84, 233, 0.3);
+}
+
+.card-tile.is-revealed {
+  border-color: var(--success);
+  color: var(--success);
+  background: #f1faf5;
+}
+
+.card-tile-check {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 0.65rem;
+  color: var(--success);
+}
+
+.card-tile:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.card-tile:hover .card-tile-check {
+  color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .card-mesh {
+    grid-template-columns: repeat(4, 60px);
+    gap: 0.5rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Dialog (pregunta en modal, no en la malla)                          */
+/* ------------------------------------------------------------------ */
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 22, 26, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 50;
+}
+
+.dialog-surface {
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.question-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+}
+
+.question-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.question-badge {
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(84, 84, 233, 0.1);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+}
+
+.question-badge--diagram {
+  color: var(--icesi-purple);
+  background: rgba(134, 92, 240, 0.12);
+}
+
+.question-badge--text {
+  color: var(--accent);
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-button:hover {
+  color: var(--text);
+}
+
+.flip-card {
+  position: relative;
+  min-height: 280px;
+}
+
+.flip-card--diagram {
+  min-height: 480px;
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+}
+
+.flip-back {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.question-prompt {
+  text-align: center;
+}
+
+.answer-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--success);
+}
+
+/* ------------------------------------------------------------------ */
+/* Timer                                                               */
+/* ------------------------------------------------------------------ */
+
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--surface-muted);
+}
+
+.timer-display {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+
+.timer--running .timer-display {
+  color: var(--accent);
+}
+
+.timer--done .timer-display {
+  color: var(--icesi-orange);
+}
+
+.timer-button {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.timer-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Texto matemático (KaTeX)                                            */
+/* ------------------------------------------------------------------ */
+
+.math-text {
+  line-height: 1.6;
+}
+
+.math-line {
+  margin: 0 0 0.4rem;
+}
+
+.math-line:last-child {
+  margin-bottom: 0;
+}
+
+.math-line--blank {
+  height: 0.4rem;
+  margin-bottom: 0;
+}
+
+.math-text .katex {
+  font-size: 1.05em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Botón revelar                                                       */
+/* ------------------------------------------------------------------ */
+
+.reveal-button {
+  align-self: stretch;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reveal-button:hover {
+  background: var(--icesi-blue-dark);
+}
+
+.reveal-button--secondary {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text-dim);
+}
+
+.reveal-button--secondary:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.grade-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.grade-button {
+  flex: 1;
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: transform 0.1s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.grade-button:hover {
+  transform: translateY(-1px);
+}
+
+.grade-button--correct:hover {
+  border-color: var(--success);
+  background: #f1faf5;
+}
+
+.grade-button--wrong:hover {
+  border-color: var(--icesi-orange);
+  background: #fdf1ec;
+}
+
+/* ------------------------------------------------------------------ */
+/* Diagrama de flechas (dominio/codominio)                             */
+/* ------------------------------------------------------------------ */
+
+.mapping-diagram-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+}
+
+.mapping-diagram {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mapping-oval {
+  fill: rgba(84, 84, 233, 0.04);
+  stroke: var(--diagram-oval);
+  stroke-width: 2.5;
+}
+
+.mapping-set-label {
+  fill: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.mapping-arrow {
+  stroke: var(--diagram-arrow);
+  stroke-width: 1.5;
+}
+
+.mapping-dot {
+  fill: var(--diagram-dot);
+}
+
+.mapping-point-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.mapping-point-label--domain {
+  margin-left: -1.1rem;
+}
+
+.mapping-point-label--codomain {
+  margin-left: 1.1rem;
+}
+
+@media (min-width: 480px) {
+  .mapping-diagram-wrap {
+    max-width: 380px;
+  }
+}
