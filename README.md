@@ -1,5 +1,4 @@
 <h1>TL;DR for this repo:</h1>
-<img src="src/assets/icesi-icon.png" height="100" width="100">
 <ul>
   <li><h4>Technologies used:</h4>JavaScript (React + Vite), KaTeX, react-spring
     <br>
