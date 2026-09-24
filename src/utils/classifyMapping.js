@@ -1,5 +1,3 @@
-// Deriva las propiedades de una relación dada como pares (dominio, codominio)
-// a partir de sus flechas, en vez de depender de datos escritos a mano.
 export function classifyMapping(domain, codomain, pairs) {
   const outDegree = new Map(domain.map((d) => [d, 0]))
   const inDegree = new Map(codomain.map((c) => [c, 0]))

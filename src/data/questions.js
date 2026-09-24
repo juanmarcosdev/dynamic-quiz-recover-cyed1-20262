@@ -1,16 +1,7 @@
-// Banco de 22 preguntas para la actividad de recuperación del Quiz 2
-// (Unidad 2: Conjuntos y funciones — CyED1). No son las preguntas literales
-// del quiz, sino variantes puntuales sobre los mismos subtemas: pertenencia
-// y operaciones rápidas sobre relaciones, invertibilidad, clasificación
-// inyectiva/sobreyectiva/biyectiva (por fórmula y por diagrama de flechas) y
-// composición evaluada en un punto. Pensadas para responderse en ~1 minuto,
-// con dificultad media y pareja entre todas.
-//
-// El texto matemático va delimitado por $...$ y se renderiza con KaTeX
-// (ver MathText.jsx) para que se vea como en LaTeX.
+//el texto va delimitado por $...$ para renderizarse con KaTeX (MathText.jsx).
 
 export const questions = [
-  // ---- Bloque 1: relaciones — pertenencia y cálculo puntual ---------------
+  //---- Bloque 1: relaciones — pertenencia y cálculo puntual ---------------
   {
     id: 1,
     topic: 'Relaciones',
@@ -55,7 +46,7 @@ export const questions = [
     answer: 'No: $p$ tiene dos imágenes distintas, $1$ y $5$.',
   },
 
-  // ---- Bloque 2: invertibilidad — reconocimiento rápido -------------------
+  //---- bloque 2: invertibilidad — reconocimiento rápido -------------------
   {
     id: 6,
     topic: 'Invertibilidad',
@@ -87,7 +78,7 @@ export const questions = [
       'Sí. $x^3$ es estrictamente creciente $\\Rightarrow$ inyectiva; para cualquier $y \\in \\mathbb{R}$ existe $x = \\sqrt[3]{\\dfrac{y+1}{4}}$ $\\Rightarrow$ sobreyectiva.',
   },
 
-  // ---- Bloque 3: clasificación — Sí/No por función -------------------------
+  //---- Bloque 3: clasificación — Sí/No por función -------------------------
   {
     id: 10,
     topic: 'Clasificación',
@@ -121,7 +112,7 @@ export const questions = [
       'Sí, No, No. Es inyectiva, pero $1 \\notin \\operatorname{ran}(s)$: $3x-4=1 \\Rightarrow x=\\dfrac{5}{3} \\notin \\mathbb{Z}$.',
   },
 
-  // ---- Bloque 4: composición evaluada en un punto --------------------------
+  //---- bloque 4: composición evaluada en un punto --------------------------
   {
     id: 14,
     topic: 'Composición',
@@ -146,10 +137,7 @@ export const questions = [
       'El resultado coincide con la entrada: de hecho $f$ y $g$ son funciones inversas entre sí.',
   },
 
-  // ---- Bloque 5: diagramas de flechas (dominio/codominio) -----------------
-  // Las propiedades (función / inyectiva / sobreyectiva / biyectiva) se
-  // calculan en tiempo real con classifyMapping() a partir de domain/codomain/pairs,
-  // así que el enunciado y la respuesta nunca pueden quedar desincronizados.
+  //---- Bloque 5: diagramas de flechas (dominio/codominio) -----------------
   {
     id: 17,
     topic: 'Diagrama',

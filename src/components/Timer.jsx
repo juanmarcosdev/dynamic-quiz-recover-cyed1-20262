@@ -5,7 +5,7 @@ const DURATION = 60
 
 const Timer = forwardRef(function Timer(_props, ref) {
   const [secondsLeft, setSecondsLeft] = useState(DURATION)
-  const [status, setStatus] = useState('idle') // idle | running | done
+  const [status, setStatus] = useState('idle') //idle | running | done
   const intervalRef = useRef(null)
   const cronoAudioRef = useRef(null)
 

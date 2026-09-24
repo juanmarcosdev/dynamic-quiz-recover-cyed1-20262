@@ -7,7 +7,7 @@ import Landing from './components/Landing.jsx'
 import IcesiLogo from './components/IcesiLogo.jsx'
 
 export default function App() {
-  const [view, setView] = useState('landing') // 'landing' | 'game'
+  const [view, setView] = useState('landing') //'landing' | 'game'
   const [selectedId, setSelectedId] = useState(null)
   const [revealedIds, setRevealedIds] = useState(() => new Set())
 
@@ -42,7 +42,7 @@ export default function App() {
     <div className="app">
       <IcesiLogo />
       <header className="app-header">
-        <h1>Recuperación - Quiz 2 CyED1</h1>
+        <h1>Quiz 2 - CyED1</h1>
         <div className="app-progress">
           <span>
             {revealedIds.size} / {questions.length} reveladas

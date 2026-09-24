@@ -1,9 +1,6 @@
 import { Fragment } from 'react'
 import katex from 'katex'
 
-// Divide el texto en segmentos normales y segmentos LaTeX delimitados por $...$,
-// y renderiza estos últimos con KaTeX para que la notación matemática se vea
-// como en LaTeX (fracciones, exponentes, conjuntos, ℝ/ℤ de pizarra, etc.).
 function renderSegments(raw) {
   const parts = raw.split(/\$([^$]+)\$/g)
   return parts.map((part, i) => {
@@ -28,9 +25,7 @@ function renderLineContent(line, key) {
   )
 }
 
-// Para una sola línea, no se envuelve en un <div> interno: así MathText
-// puede usarse inline (as="span") sin generar HTML de bloque inválido
-// dentro de elementos en línea, como las etiquetas de los diagramas.
+//línea única sin <div> interno: permite usar as="span" en contextos inline.
 export default function MathText({ text, as: Tag = 'div' }) {
   const lines = text.split('\n')
 
