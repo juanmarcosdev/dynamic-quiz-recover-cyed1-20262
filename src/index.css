@@ -131,6 +131,21 @@ button {
   transition: transform 0.15s ease, background 0.15s ease;
 }
 
+.landing-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.landing-level-detail {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
 .landing-start-button:hover {
   background: var(--icesi-blue-dark);
   transform: translateY(-1px);
@@ -241,8 +256,30 @@ button {
   color: #ffffff;
 }
 
+.card-group {
+  margin-bottom: 1.75rem;
+}
+
+.card-group-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--icesi-purple);
+  text-align: center;
+}
+
+.card-mesh--wide {
+  grid-template-columns: repeat(10, 68px);
+}
+
+@media (max-width: 860px) {
+  .card-mesh--wide {
+    grid-template-columns: repeat(6, 68px);
+  }
+}
+
 @media (max-width: 480px) {
-  .card-mesh {
+  .card-mesh,
+  .card-mesh--wide {
     grid-template-columns: repeat(4, 60px);
     gap: 0.5rem;
   }
@@ -326,6 +363,23 @@ button {
 
 .flip-card--diagram {
   min-height: 480px;
+}
+
+/* la tarjeta toma la altura de su cara más alta (preguntas con texto de la TI) */
+.flip-card--auto {
+  display: grid;
+  min-height: 0;
+}
+
+.flip-card--auto .flip-face {
+  position: relative;
+  inset: auto;
+  grid-area: 1 / 1;
+  align-items: stretch;
+}
+
+.dialog-surface--wide {
+  max-width: 680px;
 }
 
 .flip-face {
@@ -550,4 +604,92 @@ button {
   .mapping-diagram-wrap {
     max-width: 380px;
   }
+}
+
+/* ------------------------------------------------------------------ */
+/* Nivel 2: preguntas de selección múltiple de la TI                   */
+/* ------------------------------------------------------------------ */
+
+.ti-prompt,
+.ti-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  line-height: 1.5;
+}
+
+.ti-requirement {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border-left: 4px solid var(--icesi-purple);
+  border-radius: 0 10px 10px 0;
+  background: rgba(134, 92, 240, 0.08);
+  font-size: 0.88rem;
+}
+
+.ti-requirement p {
+  margin: 0.3rem 0 0;
+}
+
+.ti-requirement-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--icesi-purple);
+}
+
+.ti-question-text {
+  margin: 0;
+  font-weight: 700;
+}
+
+.ti-options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.ti-option {
+  margin: 0;
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 0.93rem;
+}
+
+.ti-option-letter {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(84, 84, 233, 0.1);
+}
+
+.ti-option--correct {
+  border-color: var(--success);
+  background: #f1faf5;
+}
+
+.ti-option--correct .ti-option-letter {
+  color: #ffffff;
+  background: var(--success);
+}
+
+.ti-feedback {
+  margin: 0;
+  color: var(--text);
 }

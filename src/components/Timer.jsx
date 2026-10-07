@@ -1,10 +1,8 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { createLoop } from '../utils/audio.js'
 
-const DURATION = 60
-
-const Timer = forwardRef(function Timer(_props, ref) {
-  const [secondsLeft, setSecondsLeft] = useState(DURATION)
+const Timer = forwardRef(function Timer({ duration = 60 }, ref) {
+  const [secondsLeft, setSecondsLeft] = useState(duration)
   const [status, setStatus] = useState('idle') //idle | running | done
   const intervalRef = useRef(null)
   const cronoAudioRef = useRef(null)
@@ -46,7 +44,7 @@ const Timer = forwardRef(function Timer(_props, ref) {
   function handleClick() {
     clearInterval(intervalRef.current)
     stopCrono()
-    setSecondsLeft(DURATION)
+    setSecondsLeft(duration)
     setStatus('running')
     const audio = createLoop('crono-question.mp3')
     cronoAudioRef.current = audio
@@ -62,7 +60,7 @@ const Timer = forwardRef(function Timer(_props, ref) {
         {minutes}:{seconds}
       </span>
       <button type="button" className="timer-button" onClick={handleClick}>
-        {status === 'idle' ? '⏱️ Iniciar 1 min' : status === 'running' ? '🔁 Reiniciar' : '🔔 Reiniciar'}
+        {status === 'idle' ? `⏱️ Iniciar ${duration / 60} min` : status === 'running' ? '🔁 Reiniciar' : '🔔 Reiniciar'}
       </button>
     </div>
   )

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export default function Dialog({ open, onClose, children }) {
+export default function Dialog({ open, onClose, wide = false, children }) {
   const backdropRef = useRef(null)
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Dialog({ open, onClose, children }) {
         if (e.target === backdropRef.current) onClose()
       }}
     >
-      <div className="dialog-surface" role="dialog" aria-modal="true">
+      <div className={`dialog-surface${wide ? ' dialog-surface--wide' : ''}`} role="dialog" aria-modal="true">
         {children}
       </div>
     </div>
