@@ -3,7 +3,6 @@ import { useSpring, animated } from '@react-spring/web'
 import MappingDiagram from './MappingDiagram.jsx'
 import MathText from './MathText.jsx'
 import Timer from './Timer.jsx'
-import { TiAnswer, TiPrompt } from './TiQuestion.jsx'
 import { classifyMapping } from '../utils/classifyMapping.js'
 import { playOnce } from '../utils/audio.js'
 
@@ -55,11 +54,9 @@ export default function QuestionPanel({ question, revealed, onReveal, onClose, t
 
   if (!question) return null
 
-  const isMc = question.type === 'mc'
   const answerText = question.type === 'diagram' ? diagramExplanation(question) : question.answer
   const flipClasses = ['flip-card']
   if (question.type === 'diagram') flipClasses.push('flip-card--diagram')
-  if (isMc) flipClasses.push('flip-card--auto')
 
   return (
     <div className="question-panel">
@@ -79,7 +76,7 @@ export default function QuestionPanel({ question, revealed, onReveal, onClose, t
           className="flip-face flip-front"
           style={{ opacity: opacity.to((o) => 1 - o), transform }}
         >
-          {isMc ? <TiPrompt question={question} /> : <MathText text={question.prompt} as="div" />}
+          <MathText text={question.prompt} as="div" />
           {question.type === 'diagram' && (
             <MappingDiagram
               domain={question.domain}
@@ -97,7 +94,7 @@ export default function QuestionPanel({ question, revealed, onReveal, onClose, t
           }}
         >
           <span className="answer-label">Respuesta</span>
-          {isMc ? <TiAnswer question={question} /> : <MathText text={answerText} as="div" />}
+          <MathText text={answerText} as="div" />
         </animated.div>
       </div>
 

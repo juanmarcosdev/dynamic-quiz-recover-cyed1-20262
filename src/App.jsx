@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import { questions } from './data/questions.js'
-import { tiQuestions } from './data/tiQuestions.js'
 import CardTile from './components/CardTile.jsx'
 import QuestionPanel from './components/QuestionPanel.jsx'
 import Dialog from './components/Dialog.jsx'
@@ -8,26 +7,14 @@ import Landing from './components/Landing.jsx'
 import IcesiLogo from './components/IcesiLogo.jsx'
 
 const LEVELS = {
-  1: { title: 'Quiz 2 - CyED1', questions, timerDuration: 60, grouped: false },
-  2: { title: 'Nivel 2 - Tarea Integradora', questions: tiQuestions, timerDuration: 120, grouped: true },
-}
-
-//agrupa por tema conservando el orden de aparición.
-function groupByTopic(list) {
-  const groups = []
-  for (const q of list) {
-    const last = groups[groups.length - 1]
-    if (last && last.topic === q.topic) last.items.push(q)
-    else groups.push({ topic: q.topic, items: [q] })
-  }
-  return groups
+  1: { title: 'Quiz 2 - CyED1', questions, timerDuration: 60 },
 }
 
 export default function App() {
   const [view, setView] = useState('landing') //'landing' | 'game'
   const [level, setLevel] = useState(1)
   const [selectedId, setSelectedId] = useState(null)
-  const [revealedByLevel, setRevealedByLevel] = useState(() => ({ 1: new Set(), 2: new Set() }))
+  const [revealedByLevel, setRevealedByLevel] = useState(() => ({ 1: new Set() }))
 
   const config = LEVELS[level]
   const revealedIds = revealedByLevel[level]
@@ -87,31 +74,18 @@ export default function App() {
           <button type="button" className="reset-button" onClick={handleReset}>
             Reiniciar actividad
           </button>
-          <button type="button" className="reset-button" onClick={() => setView('landing')}>
-            Cambiar nivel
-          </button>
         </div>
       </header>
 
       <main className="app-main">
-        {config.grouped ? (
-          groupByTopic(config.questions).map((group) => (
-            <section key={group.topic} className="card-group" aria-label={group.topic}>
-              <h2 className="card-group-title">{group.topic}</h2>
-              <div className="card-mesh card-mesh--wide">{group.items.map(renderTile)}</div>
-            </section>
-          ))
-        ) : (
-          <section className="card-mesh" aria-label="Malla de preguntas">
-            {config.questions.map(renderTile)}
-          </section>
-        )}
+        <section className="card-mesh" aria-label="Malla de preguntas">
+          {config.questions.map(renderTile)}
+        </section>
       </main>
 
       <Dialog
         open={selectedQuestion != null}
         onClose={() => setSelectedId(null)}
-        wide={selectedQuestion?.type === 'mc'}
       >
         <QuestionPanel
           question={selectedQuestion}
