@@ -605,3 +605,91 @@ button {
     max-width: 380px;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Nivel 2: sustentación (selector de estudiante y preguntas ★)        */
+/* ------------------------------------------------------------------ */
+
+.student-picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.student-picker select {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.45rem 0.7rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  max-width: 100%;
+}
+
+.student-picker select:focus {
+  outline: 2px solid rgba(84, 84, 233, 0.35);
+  border-color: var(--accent);
+}
+
+.card-group--starred {
+  padding: 1rem 0.75rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(233, 104, 59, 0.06);
+  border: 1.5px dashed var(--icesi-orange);
+}
+
+.card-group--starred .card-group-title {
+  color: var(--icesi-orange);
+}
+
+.card-tile--starred {
+  color: var(--icesi-orange);
+  border-color: var(--icesi-orange);
+  font-size: 1rem;
+}
+
+.card-tile--starred:hover {
+  background: var(--icesi-orange);
+  border-color: var(--icesi-orange);
+}
+
+.question-badge--starred {
+  color: var(--icesi-orange);
+  background: rgba(233, 104, 59, 0.12);
+}
+
+.flip-card--auto .math-text {
+  line-height: 1.5;
+}
+
+/* en el nivel 2 cada grupo tiene pocas tarjetas: se centran en lugar de llenar 10 columnas */
+.card-group .card-mesh--wide {
+  grid-template-columns: repeat(auto-fit, 68px);
+}
+
+@media (max-width: 480px) {
+  .card-group .card-mesh--wide {
+    grid-template-columns: repeat(auto-fit, 60px);
+  }
+}
+
+.landing-start-button--starred {
+  background: var(--icesi-orange);
+}
+
+.landing-start-button--starred:hover {
+  background: #c9542c;
+}
+
+.student-empty {
+  margin: 2rem auto;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 1rem;
+}

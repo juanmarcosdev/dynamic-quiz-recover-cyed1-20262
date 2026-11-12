@@ -38,7 +38,7 @@ function diagramExplanation(question) {
   return lines.join('\n')
 }
 
-export default function QuestionPanel({ question, revealed, onReveal, onClose, timerDuration }) {
+export default function QuestionPanel({ question, revealed, onReveal, onClose, timerDuration, autoHeight = false }) {
   const timerRef = useRef(null)
 
   const { transform, opacity } = useSpring({
@@ -57,12 +57,17 @@ export default function QuestionPanel({ question, revealed, onReveal, onClose, t
   const answerText = question.type === 'diagram' ? diagramExplanation(question) : question.answer
   const flipClasses = ['flip-card']
   if (question.type === 'diagram') flipClasses.push('flip-card--diagram')
+  //las preguntas de sustentación tienen respuestas largas: la tarjeta crece con su texto.
+  if (autoHeight) flipClasses.push('flip-card--auto')
+
+  const badgeClasses = ['question-badge', `question-badge--${question.type}`]
+  if (question.starred) badgeClasses.push('question-badge--starred')
 
   return (
     <div className="question-panel">
       <div className="question-panel-header">
-        <span className={`question-badge question-badge--${question.type}`}>
-          #{question.id} - {question.topic}
+        <span className={badgeClasses.join(' ')}>
+          {question.starred ? question.label : `#${question.id}`} - {question.topic}
         </span>
         <button type="button" className="close-button" onClick={onClose} aria-label="Cerrar">
           ✕
