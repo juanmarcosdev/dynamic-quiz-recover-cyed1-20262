@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { questions } from './data/questions.js'
 import { sustentacionQuestions } from './data/sustentacionQuestions.js'
+import { seguimiento6Questions } from './data/seguimiento6Questions.js'
 import { sustentacionStudents, starredQuestions } from './data/sustentacionStudents.js'
 import CardTile from './components/CardTile.jsx'
 import QuestionPanel from './components/QuestionPanel.jsx'
@@ -11,8 +12,9 @@ import IcesiLogo from './components/IcesiLogo.jsx'
 //nivel 2: banco general de la sustentación; nivel 3: preguntas específicas por código.
 const LEVELS = {
   1: { title: 'Quiz 2 - CyED1', timerDuration: 60, grouped: false },
-  2: { title: 'Sustentación CyED3 · Preguntas generales', timerDuration: 120, grouped: true },
-  3: { title: 'Sustentación CyED3 · Preguntas específicas', timerDuration: 120, grouped: false },
+  2: { title: 'Sustentación CyED3 - Preguntas generales', timerDuration: 120, grouped: true },
+  3: { title: 'Sustentación CyED3 - Preguntas específicas', timerDuration: 120, grouped: false },
+  4: { title: 'Seguimiento 6 - 1 Pregunta de la TI', timerDuration: 120, grouped: false },
 }
 
 //agrupa por tema conservando el orden de aparición.
@@ -32,7 +34,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null)
   const [studentCode, setStudentCode] = useState('')
   //las reveladas se conservan al cambiar de pantalla o de estudiante: así se ve qué preguntas ya salieron.
-  const [revealedByLevel, setRevealedByLevel] = useState(() => ({ 1: new Set(), 2: new Set(), 3: new Set() }))
+  const [revealedByLevel, setRevealedByLevel] = useState(() => ({ 1: new Set(), 2: new Set(), 3: new Set(), 4: new Set() }))
 
   const config = LEVELS[level]
   const revealedIds = revealedByLevel[level]
@@ -45,6 +47,7 @@ export default function App() {
   const levelQuestions = useMemo(() => {
     if (level === 1) return questions
     if (level === 2) return sustentacionQuestions
+    if (level === 4) return seguimiento6Questions
     return starredQuestions(student)
   }, [level, student])
 
@@ -122,7 +125,7 @@ export default function App() {
               <option value="">Elige un código…</option>
               {sustentacionStudents.map((s) => (
                 <option key={s.code} value={s.code}>
-                  {s.code} · {s.month}
+                  {s.code} - {s.month}
                 </option>
               ))}
             </select>
@@ -143,7 +146,7 @@ export default function App() {
           (student ? (
             <section className="card-group card-group--starred" aria-label="Preguntas específicas">
               <h2 className="card-group-title">
-                ★ {student.code} · mes asignado {student.month}
+                ★ {student.code} - mes asignado {student.month}
               </h2>
               <div className="card-mesh card-mesh--wide">{levelQuestions.map(renderTile)}</div>
             </section>
@@ -151,8 +154,8 @@ export default function App() {
             <p className="student-empty">Elige el código que salió en la ruleta para ver sus preguntas.</p>
           ))}
 
-        {level === 1 && (
-          <section className="card-mesh" aria-label="Malla de preguntas">
+        {(level === 1 || level === 4) && (
+          <section className={level === 4 ? 'card-mesh card-mesh--wide' : 'card-mesh'} aria-label="Malla de preguntas">
             {levelQuestions.map(renderTile)}
           </section>
         )}
